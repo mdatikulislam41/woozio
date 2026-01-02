@@ -6,7 +6,12 @@ const Home = () => {
   return (
     <>
       <Slider />
-      <Products />
+      <div className="bg-white pt-4">
+        <h2 className="text-black text-center font-bold text-4xl">
+          Feature Products
+        </h2>
+      </div>
+      <Products start={4} />
     </>
   );
 };

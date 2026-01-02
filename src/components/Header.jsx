@@ -5,6 +5,7 @@ import { Link, Navigate, NavLink } from "react-router";
 import { getNavItem } from "../services/mokApi";
 import { useNavigate } from "react-router";
 import { useCart } from "../context/CartContext";
+import { useFavorite } from "../context/FavoriteContext";
 const NavItem = () => {
   const {
     data: nav,
@@ -29,6 +30,7 @@ const NavItem = () => {
 
 const Header = () => {
   const { cart } = useCart();
+  const { favorite } = useFavorite();
   const navigate = useNavigate();
   return (
     <>
@@ -75,7 +77,15 @@ const Header = () => {
             className="btn btn-ghost btn-circle"
             onClick={() => navigate("/favorite")}
           >
-            <Heart size={20} className="fill-red-500 text-red-400" />
+            <Heart
+              size={20}
+              className="fill-red-500 text-red-400"
+              className={
+                favorite.length > 0
+                  ? "fill-red-500 text-red-400"
+                  : "fill-gray-500 text-red-400"
+              }
+            />
           </button>
           <button className="btn btn-ghost btn-circle">
             <div className="indicator">

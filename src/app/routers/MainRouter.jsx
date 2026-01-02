@@ -7,13 +7,17 @@ import Favorite from "../../pages/Favorite";
 import SingleProduct from "../../pages/SingleProduct";
 import { CartContext } from "../../context/CartContext";
 import Checkout from "../../pages/Checkout";
+import { FavoriteContext } from "../../context/FavoriteContext";
+import Shop from "../../pages/Shop";
 
 const MainRouter = createBrowserRouter([
   {
     path: "/",
     element: (
       <CartContext>
-        <Layout />
+        <FavoriteContext>
+          <Layout />
+        </FavoriteContext>
       </CartContext>
     ),
     children: [
@@ -22,6 +26,7 @@ const MainRouter = createBrowserRouter([
         element: <Home />,
       },
       { path: "cart", element: <Cart /> },
+      { path: "shop", element: <Shop /> },
       { path: "checkout", element: <Checkout /> },
       { path: "favorite", element: <Favorite /> },
       { path: "/product/:id", element: <SingleProduct /> },

@@ -2,6 +2,7 @@ import { Check, Trash } from "lucide-react";
 import React from "react";
 import { Link } from "react-router";
 import { useCart } from "../context/CartContext";
+import { slugify } from "../utils/slugify";
 
 const CartItem = ({ product }) => {
   const { removeCartItem, increaseCart, decreaseCart } = useCart();
@@ -23,10 +24,10 @@ const CartItem = ({ product }) => {
         <div className="flex flex-1 flex-col justify-between py-4">
           <div>
             <Link
-              to={`/product/${product.id}`}
+              to={`/product/${slugify(product.title)}`}
               className="mb-1 inline-block text-lg font-bold text-gray-800 transition duration-100 hover:text-gray-500 lg:text-xl"
             >
-              Top
+              {product.title}
             </Link>
 
             <span className="block text-gray-500">Size: S</span>
