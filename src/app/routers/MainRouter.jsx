@@ -6,6 +6,7 @@ import Cart from "../../pages/Cart";
 import Favorite from "../../pages/Favorite";
 import SingleProduct from "../../pages/SingleProduct";
 import { CartContext } from "../../context/CartContext";
+import Checkout from "../../pages/Checkout";
 
 const MainRouter = createBrowserRouter([
   {
@@ -21,6 +22,7 @@ const MainRouter = createBrowserRouter([
         element: <Home />,
       },
       { path: "cart", element: <Cart /> },
+      { path: "checkout", element: <Checkout /> },
       { path: "favorite", element: <Favorite /> },
       { path: "/product/:id", element: <SingleProduct /> },
       { path: "*", element: <Notfound /> },

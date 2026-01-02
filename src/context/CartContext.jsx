@@ -23,6 +23,29 @@ const cartReducer = (state, action) => {
           items: [...state.items, { ...action.payload, quantity: 1 }],
         };
       }
+    case "REMOVE_ITEM":
+      return {
+        ...state,
+        items: state.items.filter((item) => item.id !== action.payload.id),
+      };
+    case "INCREASE_ITEM":
+      return {
+        ...state,
+        items: state.items.map((item) =>
+          item.id === action.payload.id
+            ? { ...item, quantity: item.quantity + 1 }
+            : item
+        ),
+      };
+    case "DECREASE_ITEM":
+      return {
+        ...state,
+        items: state.items.map((item) =>
+          item.id === action.payload.id
+            ? { ...item, quantity: item.quantity - 1 }
+            : item
+        ),
+      };
   }
 };
 export const CartContext = ({ children }) => {
@@ -31,7 +54,7 @@ export const CartContext = ({ children }) => {
     cartDispatch({ type: "ADD_TO_CART", payload: product });
     toast.success(`${product.title} has been added`);
   };
-  const removeCart = (product) => {
+  const removeCartItem = (product) => {
     cartDispatch({ type: "REMOVE_ITEM", payload: product });
     toast.success(`${product.title} has been Removed`);
   };
@@ -39,9 +62,12 @@ export const CartContext = ({ children }) => {
     cartDispatch({ type: "INCREASE_ITEM", payload: { id: pid, qt } });
     toast.success("updated");
   };
-
+  const decreaseCart = (pid) => {
+    cartDispatch({ type: "DECREASE_ITEM", payload: { id: pid } });
+    toast.success("updated");
+  };
   const clearCart = () => {
-    cartDispatch({ type: "INCREASE_ITEM" });
+    cartDispatch({ type: "CLEAR_ITEM" });
     toast.success("Cart hase been Cleard");
   };
   const cartTotal = getState.items.reduce(
@@ -56,8 +82,9 @@ export const CartContext = ({ children }) => {
       value={{
         cart: getState.items,
         addToCart,
-        removeCart,
+        removeCartItem,
         increaseCart,
+        decreaseCart,
         clearCart,
         cartTotal,
       }}
