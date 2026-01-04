@@ -30,7 +30,6 @@ const ProductCard = ({ product }) => {
                   ? "fill-red-500 text-red-500"
                   : "text-gray-400 hover:text-red-500"
               }
-              //  className="fill-red-500 text-red-500"
             />
           </button>
         </div>
@@ -40,7 +39,7 @@ const ProductCard = ({ product }) => {
               {product.category}
             </span>
             {/* <Link to={`/product/${product.id}`}></Link> */}
-            <Link to={`/product/${slugify(product.title)}`}>
+            <Link to={`/product/${product.id}`}>
               <h3 className="font-semibold text-gray-900 mb-2 line-clamp-2 hover:text-primary transition-colors">
                 {product.title}
               </h3>

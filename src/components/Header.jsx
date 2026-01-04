@@ -83,7 +83,7 @@ const Header = () => {
               className={
                 favorite.length > 0
                   ? "fill-red-500 text-red-400"
-                  : "fill-gray-500 text-red-400"
+                  : "fill-gray-500 "
               }
             />
           </button>
